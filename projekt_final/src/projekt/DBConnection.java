@@ -7,17 +7,17 @@ import java.sql.SQLException;
 public class DBConnection {
 
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/mydatabase";
-    private static final String JMENO = "username";
-    private static final String HESLO = "password";
+    private static final String JMENO = "jmeno";
+    private static final String HESLO = "heslo";
 
     private Connection connection;
 
     public DBConnection() {
         try {
             connection = DriverManager.getConnection(JDBC_URL, JMENO, HESLO);
-            System.out.println("Connected to the database.");
+            System.out.println("Připojen do databáze.");
         } catch (SQLException e) {
-            System.out.println("Error connecting to the database: " + e.getMessage());
+            System.out.println("Chyba při připojování k databázi: " + e.getMessage());
         }
     }
 
@@ -25,27 +25,23 @@ public class DBConnection {
         return connection;
     }
 
-    public void closeConnection() {
+    public void zavritConnection() {
         if (connection != null) {
             try {
                 connection.close();
-                System.out.println("Disconnected from the database.");
+                System.out.println("Odpojen z databáze.");
             } catch (SQLException e) {
-                System.out.println("Error closing the connection: " + e.getMessage());
+                System.out.println("Chyba při odpojení od databáze: " + e.getMessage());
             }
         }
     }
-
-	public void connectToSQLDB() {
-	}
-
-	public void disconnectFromSQLDB() {
+	public void odpojitzSQLDB() {
 	    if (connection != null) {
 	        try {
 	            connection.close();
-	            System.out.println("Disconnected from the database.");
+	            System.out.println("Odpojen z databáze.");
 	        } catch (SQLException e) {
-	            System.out.println("Error closing the connection: " + e.getMessage());
+	            System.out.println("Chyba při odpojení od databáze: " + e.getMessage());
 	        }
 	    }
 	}
